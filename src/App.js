@@ -33,6 +33,11 @@ function App() {
     setItems(newList);
   };
 
+  const onDelete = (items) => {
+    alert("i am on delete", items);
+    setItems(items.filter((e) => e !== items));
+  };
+
   //Remove All fucntion
   const removeAll = () => {
     setItems([]);
@@ -76,7 +81,7 @@ function App() {
               <th>{i + 1}</th>
               <th>{value}</th>
               <th>
-                <Button variant="outlined" onClick={() => deleteData(value.i)}>
+                <Button variant="outlined" onClick={() => onDelete(i + 1)}>
                   Delete
                 </Button>
               </th>
