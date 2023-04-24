@@ -5,18 +5,20 @@ import { TextField, Button } from "@mui/material";
 
 function App() {
   const [inputData, setInputData] = useState("");
-  // const [id, setId] = useState("");
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem("lists", JSON.stringify(items));
-  }, [items]);
-
+    localStorage.setItem("list", JSON.stringify(items));
+  } );
+  
   //getLocalStorage in console start
   const getLocalItems = () => {
     let list = localStorage.getItem("lists");
     console.log(list);
   };
+  useEffect(() => {
+    getLocalItems();
+  },[getLocalItems]);
   //getLocalStorage in console end
 
   //addData Function
@@ -26,16 +28,13 @@ function App() {
   };
 
   //Delete Data fucntion
-  const deleteData = (id) => {
-    // console.log(id);
-    alert(id);
-    const newList = items.filter((val) => val.id !== items.id);
-    setItems(newList);
-  };
-
-  const onDelete = (items) => {
-    alert("i am on delete", items);
-    setItems(items.filter((e) => e !== items));
+  const onDelete = (id) => {
+ 
+    setItems((value)=>{
+      return value.filter((arrElem,index)=>{
+        return index !== id;
+      })
+    })
   };
 
   //Remove All fucntion
@@ -43,9 +42,8 @@ function App() {
     setItems([]);
   };
 
-  useEffect(() => {
-    getLocalItems();
-  });
+ 
+
   return (
     <>
       <div className="container">
@@ -56,11 +54,7 @@ function App() {
         />
         <br />
         <br />
-        {/* <TextField
-          label="Id"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-        /> */}
+      
         &nbsp;
         <TextField
           label="ADD YOUR DATA"
@@ -68,20 +62,20 @@ function App() {
           onChange={(e) => setInputData(e.target.value)}
         />
         &nbsp;&nbsp;
-        <Button variant="outlined" onClick={() => addItems()}>
+        <Button variant="outlined" className="me-2" onClick={() => addItems()}>
           Add
         </Button>
-        <Button variant="outlined" onClick={() => removeAll()}>
-          remove
+        <Button variant="outlined"  onClick={() => removeAll()}>
+         Clear All
         </Button>
         <table className="table">
           <br />
-          {items.map((value, i) => (
-            <tr key={i}>
-              <th>{i + 1}</th>
+          {items.map((value, index) => (
+            <tr key={index}>
+              <th>{index + 1}</th>
               <th>{value}</th>
               <th>
-                <Button variant="outlined" onClick={() => onDelete(i + 1)}>
+                <Button variant="outlined" onClick={() => onDelete(index )}>
                   Delete
                 </Button>
               </th>
@@ -89,6 +83,7 @@ function App() {
           ))}
         </table>
       </div>
+       
     </>
   );
 }
