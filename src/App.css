@@ -45,3 +45,9 @@ body{
  background-attachment: fixed;
 }
  
+
+.textDeco{
+  text-shadow: 0px 0px 10px rgb(68, 68, 68);
+  font-family: 'Ysabeau', sans-serif;
+  opacity: 0.6;
+}
