@@ -7,7 +7,6 @@ function InputText(props) {
     <>
       <TextField fullWidth 
         label="ADD YOUR DATA"
- 
         value={props.inputdata}
         onChange={(e) => props.setinputdata(e.target.value)}
       />

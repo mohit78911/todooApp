@@ -10,14 +10,14 @@ function Todo() {
   const [inputData, setInputData] = useState("");
   const [items, setItems] = useState([]);
   
-
   useEffect(() => {
     localStorage.setItem("key", JSON.stringify(items));
   });
 
   //addData Function
   const addItems = () => {
-    if(inputData == 0 ){
+    if(inputData.length === 0 ){
+        console.log("Please Add Some Text")
         alert("Bhai, Bina Kisi Data Ke Kese Kru ADD!!")
     }
     else{setItems([inputData, ...items]);
@@ -53,5 +53,4 @@ function Todo() {
     </>
   );
 }
-
 export default Todo;
