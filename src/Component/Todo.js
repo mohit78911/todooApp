@@ -1,7 +1,6 @@
 // import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "..//App.css";
- 
 import InputText from "./InputText";
 import Buttons from "./Buttons";
 import Tables from "./Tables";
@@ -10,21 +9,11 @@ import Image from "./Image";
 function Todo() {
   const [inputData, setInputData] = useState("");
   const [items, setItems] = useState([]);
-  const key = "key";
+  
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(items));
+    localStorage.setItem("key", JSON.stringify(items));
   });
-
-  //getLocalStorage in console start
-  const getLocalItems = () => {
-    let list = localStorage.getItem("lists");
-    console.log(list);
-  };
-  useEffect(() => {
-    getLocalItems();
-  }, [getLocalItems]);
-  //getLocalStorage in console end
 
   //addData Function
   const addItems = () => {
