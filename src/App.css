@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+
+body{
+ background-image: url('https://www.gifimages.pics/images/quotes/english/general/cute-animated-gif-background-52650-314582.gif');
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-attachment: fixed;
+ 
+ 
+}
+ 
