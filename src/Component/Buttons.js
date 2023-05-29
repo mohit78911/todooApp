@@ -13,6 +13,7 @@ function Buttons(props) {
       <Button variant="outlined" onClick={() => props.removeall()}>
         Clear All
       </Button>
+      <Button variant="outlined" className="m-2">Edit</Button>
     </div>
   );
 }

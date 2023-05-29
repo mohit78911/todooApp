@@ -9,6 +9,11 @@ function InputText(props) {
         label="ADD YOUR DATA"
         value={props.inputdata}
         onChange={(e) => props.setinputdata(e.target.value)}
+        onKeyDown={(e)=>{
+          if(e.key === "Enter"){
+            props.adddata()
+          }
+        }}
       />
     </>
   );

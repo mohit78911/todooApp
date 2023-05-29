@@ -5,6 +5,8 @@ import InputText from "./InputText";
 import Buttons from "./Buttons";
 import Tables from "./Tables";
 import Image from "./Image";
+import 'react-toastify/dist/ReactToastify.css';
+import { toast ,ToastContainer} from "react-toastify";
 
 function Todo() {
   const [inputData, setInputData] = useState("");
@@ -18,9 +20,11 @@ function Todo() {
   const addItems = () => {
     if(inputData.length === 0 ){
         console.log("Please Add Some Text")
-        alert("Bhai, Bina Kisi Data Ke Kese Kru ADD!!")
+        toast.error("Bhai, Bina Kisi Data Ke Kese Kru ADD!!",{position:"top-right"})
     }
-    else{setItems([inputData, ...items]);
+    else{
+      toast.success("Data Added Succesfully",{position:"top-right"})
+      setItems([inputData, ...items]);
         setInputData("");}
   };
 
@@ -35,8 +39,15 @@ function Todo() {
 
   //Remove All fucntion
   const removeAll = () => {
+    toast.warning("Data Cleared",{position:"top-center"})
     setItems([]);
   };
+
+  //edit function
+  const editHandler = (id)=>{
+    const findValue = items.filter((value)=>value === id)
+    setInputData(findValue)
+  }
 
   return (
     <>
@@ -44,11 +55,13 @@ function Todo() {
         <br />
         <Image />
         <br />
-        <InputText inputdata={inputData} setinputdata={setInputData} />
+        <InputText inputdata={inputData} setinputdata={setInputData} adddata={addItems} />
         <br />
         <br />
         <Buttons additems={addItems} removeall={removeAll} />
-        <Tables items={items} ondelete={onDelete} />
+        <Tables items={items} ondelete={onDelete} edit={editHandler} />
+        <ToastContainer />
+
       </div>
     </>
   );
