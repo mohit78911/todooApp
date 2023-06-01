@@ -7,6 +7,7 @@ import Tables from "./Tables";
 import Image from "./Image";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast ,ToastContainer} from "react-toastify";
+import axios from "axios";
 
 function Todo() {
   const [inputData, setInputData] = useState("");
@@ -14,7 +15,7 @@ function Todo() {
   
   useEffect(() => {
     localStorage.setItem("key", JSON.stringify(items));
-  });
+  },[items]);
 
   //addData Function
   const addItems = () => {
@@ -45,21 +46,33 @@ function Todo() {
 
   //edit function
   const editHandler = (id)=>{
-    const findValue = items.filter((value)=>value === id)
+    const findValue = items.find((value)=>value === id)
     setInputData(findValue)
   }
 
+  //final edit btn
+
+  const editFinal = (e)=>{
+    setInputData(inputData)
+    setItems([...items, inputData])
+  }
+
+  const editnew = ()=>{
+    axios.put(inputData)
+    .then((result)=>setItems(inputData))
+    .catch((error)=>console.log(error))
+  }
   return (
     <>
-      <div className="container">
+      <div className="container mainClass">
         <br />
         <Image />
         <br />
         <InputText inputdata={inputData} setinputdata={setInputData} adddata={addItems} />
         <br />
         <br />
-        <Buttons additems={addItems} removeall={removeAll} />
-        <Tables items={items} ondelete={onDelete} edit={editHandler} />
+        <Buttons additems={addItems} removeall={removeAll} editfinal={editnew}/>
+        <Tables items={items} ondelete={onDelete} setInputData={setInputData}  />
         <ToastContainer />
 
       </div>

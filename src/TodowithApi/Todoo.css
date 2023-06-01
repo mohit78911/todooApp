@@ -1,0 +1,17 @@
+ .darkbtn{
+    position: absolute;
+    left: 38rem;
+    bottom: 7vh;
+ }
+
+ .setWidth{
+    width: 100%;
+ }
+ 
+
+ body{
+background-image: url("https://marketplace.canva.com/EAD2962NKnQ/2/0/1600w/canva-rainbow-gradient-pink-and-purple-virtual-background-_Tcjok-d9b4.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+ }
